@@ -1,19 +1,14 @@
 using UnityEngine;
-using Worker.UI;
+using Worker.Auto;
 
 public class Shop : MonoBehaviour
 {
     [SerializeField] private ShopButtonText _buyBonusClickText;
+    [SerializeField] private ShopButtonText _hireWorkerText;
 
-    private void Awake()
-    {
-        gameObject.Hide();
-    }
+    private void Awake() => gameObject.Hide();
 
-    public void Toogle()
-    {
-        gameObject.Toogle();
-    }
+    public void Toogle() => gameObject.Toogle();
 
     public void BuyBonusClick()
     {
@@ -26,7 +21,23 @@ public class Shop : MonoBehaviour
 
             _buyBonusClickText.MultiplyPriceBy();
 
-            FindObjectOfType<ScoreText>(true).UpdateDisplay();
+            Bootstrap.ScoreText.UpdateDisplay();
+        }
+    }
+
+    public void HireWorker()
+    {
+        var hireWorkerPrice = _hireWorkerText.Price;
+
+        if (Bootstrap.GameData.ScoreData.Count >= hireWorkerPrice)
+        {
+            Bootstrap.GameData.ScoreData.Decrease(hireWorkerPrice);
+
+            _hireWorkerText.MultiplyPriceBy(2);
+
+            AutoWorker.IncreaseBy();
+
+            Bootstrap.ScoreText.UpdateDisplay();
         }
     }
 }
