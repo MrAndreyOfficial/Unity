@@ -19,4 +19,6 @@ public abstract class ShopItemButton : MonoBehaviour
 
     protected void UpdateDisplay() => _textMesh.text = $"{_displayText} - {_price}$";
     protected void MultiplyPrice(uint multiplier = 2) => _price *= multiplier;
+    
+    public abstract void BuyBonus();
 }

@@ -1,3 +1,3 @@
 using UnityEngine.UI;
 
-public class ShopButton : Button { }
+public sealed class ShopButton : Button { }

@@ -8,5 +8,5 @@ public sealed class ScoreView : MonoBehaviour
 
     private void Awake() => _scoreText = GetComponent<TextMeshProUGUI>();
 
-    public void UpdateText() => _scoreText.text = $"{DataContainer.ScoreData.Score}";
+    public void UpdateText() => _scoreText.text = $"{DataContainer.Instance.ScoreData.Score}";
 }
